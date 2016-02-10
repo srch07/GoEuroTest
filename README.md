@@ -23,3 +23,4 @@ Edit com.go_euro.test.utility.Constants.APPEND_ALLOWED_TO_SAVE_CSV_DATA
 
 I have implemented caching of API calls using in-memory cache. 
 But right now, it doesn't work because after each iteration jar execution shutsdown and needs to be fired again.
+There is no requirement currently, to make program run in loop.
