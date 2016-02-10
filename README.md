@@ -17,15 +17,7 @@ Edit com.go_euro.test.utility.Constants.CSV_FILE_PATH
 
 ## How do i make file append instead of overwritting each time?
 
-I haven't provided Constant for that yet, it can however be done by modifing com.go_euro.test.service.APIService.processService
-
-Before change,
-
-SaveFileUtility.saveFile(CSV_FILE_PATH, stringBuffer.toString(), false)
-
-After change,
-
-SaveFileUtility.saveFile(CSV_FILE_PATH, stringBuffer.toString(), true)
+Edit com.go_euro.test.utility.Constants.APPEND_ALLOWED_TO_SAVE_CSV_DATA
 
 ## Anything else you want to mention?
 
