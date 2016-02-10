@@ -1,5 +1,7 @@
 package com.go_euro.test.utility;
 
+import com.go_euro.test.configuration.Constants;
+import com.go_euro.test.configuration.DisplayMessages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,27 +16,23 @@ import java.nio.file.StandardOpenOption;
  */
 public class SaveFileUtility {
     private final static Logger log = LoggerFactory.getLogger(SaveFileUtility.class);
-    public static boolean saveFile(String filePath, String data, boolean isAppend){
+    public static boolean save(final String filePath, final String data, final boolean isAppend){
         boolean response = false;
         try{
             File file = new File(filePath);
-            if(!isAppend) {
-                if (file.exists()) {
-                    file.delete();
-                }
+            if (!file.exists()) 
                 file.createNewFile();
+            
+            if(isAppend){
+                Files.write(Paths.get(filePath), data.getBytes(Constants.FILE_FORMAT),
+                        StandardOpenOption.APPEND);
             }else{
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
+            	Files.write(Paths.get(filePath), data.getBytes(Constants.FILE_FORMAT),
+                        StandardOpenOption.CREATE);
             }
-            if(isAppend)
-                Files.write(Paths.get(filePath), data.getBytes("UTF8"), StandardOpenOption.APPEND);
-            else
-                Files.write(Paths.get(filePath), data.getBytes("UTF8"), StandardOpenOption.CREATE);
             response = true;
         }catch (IOException e) {
-            log.error("Failed to save file in path {}", filePath, e);
+            log.error(DisplayMessages.FAILED_TO_SAVE_DATA_IN_FILE, filePath, e);
         }
         return response;
     }

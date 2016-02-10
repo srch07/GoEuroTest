@@ -7,24 +7,19 @@ import java.util.regex.Pattern;
  * Created by Abhishek Anand on 1/28/2016.
  */
 public class InputValidationUtility {
-    public static boolean isValidate(String [] arguments){
-        boolean response = false;
-        if(arguments.length > 1)
-            response = false;
-        else if(arguments.length == 1){
-            String expression = "^[a-zA-Z\b]*$";
-            //CharSequence inputStr = str;
-            Pattern pattern = Pattern.compile(expression);
-            Matcher matcher = pattern.matcher(arguments[0]);
-            if(matcher.matches())
-            {
-                response = true;
-            }
-            else
-            {
-                response = false;
-            }
-        }
-        return response;
-    }
+    public static boolean isValidate(final String [] arguments){
+        //boolean response = false;
+    	
+        if(arguments == null || arguments.length == 0 || arguments.length > 1)
+            return false;
+        
+        String expression = "^[a-zA-Z\b]*$";
+        Pattern pattern = Pattern.compile(expression);
+        Matcher matcher = pattern.matcher(arguments[0]);
+        
+        if(matcher.matches())
+        	return true;
+        
+        return false;
+    }   
 }
